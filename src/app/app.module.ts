@@ -19,6 +19,8 @@ import { FormsModule } from '@angular/forms';
 import { HomeComponent } from './components/home/home.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { SinglePostComponent } from './components/single-post/single-post.component';
+import { CreatePostComponent } from './components/create-post/create-post.component';
+import { MdbFormsModule } from 'mdb-angular-ui-kit/forms';
 @NgModule({
   declarations: [
     AppComponent,
@@ -26,10 +28,12 @@ import { SinglePostComponent } from './components/single-post/single-post.compon
     RegisterComponent,
     HomeComponent,
     NavbarComponent,
-    SinglePostComponent
+    SinglePostComponent,
+    CreatePostComponent
   ],
   imports: [
     BrowserModule,
+    MdbFormsModule,
     AppRoutingModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireDatabaseModule,

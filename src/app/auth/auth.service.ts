@@ -17,6 +17,7 @@ export class AuthService {
         uid:firebase.auth().currentUser?.uid,
       };
       const tokenString = JSON.stringify(token)
+      
       localStorage.setItem('user', `${tokenString}`)
       console.log(token)
       return
