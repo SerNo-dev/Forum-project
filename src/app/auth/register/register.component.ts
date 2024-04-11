@@ -9,6 +9,8 @@ import { Router } from '@angular/router';
 export class RegisterComponent {
   email: string = '';
   password: string = '';
+  nome: string = '';
+  cognome: string = '';
 
   constructor(private auth : AuthService,private router : Router){}
 
@@ -25,7 +27,8 @@ export class RegisterComponent {
       alert('Please enter password')
       return;
     }
-    this.auth.signUp(this.email, this.password).then(
+    const fullName = this.nome + ' ' + this.cognome;
+    this.auth.signUp(this.email, this.password,fullName).then(
       ()=>{
         console.log('User is Registered in');
     

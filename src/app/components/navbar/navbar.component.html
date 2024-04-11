@@ -3,7 +3,6 @@
     <div class="container-fluid justify-content-between">
       
       <div class="d-flex">
-
        <!--  <a class="navbar-brand me-2 mb-1 d-flex align-items-center" href="/">
           <img
             src="../../assets/img/dog.png"
@@ -13,8 +12,6 @@
             style="margin-top: 2px;"
           />
         </a> -->
-  
-      
         <form class="input-group w-auto my-auto d-none d-sm-flex">
           <input
             autocomplete="off"
@@ -28,22 +25,13 @@
           ></span>
         </form>
       </div>
-     
-  
       <!-- Center elements -->
       <ul class="navbar-nav flex-row d-none d-md-flex">
         <li class="nav-item me-3 me-lg-1 active">
           <a class="nav-link" href="/">
             <img src="../../assets/img/dog.png" width="60px">
-            
           </a>
         </li>
-  
-       
-  
-        
-  
-        
         <li class="nav-item me-3 me-lg-1">
           <a class="nav-link" href="/">
             <span><i class="fas fa-users fa-lg"></i></span>
@@ -55,7 +43,6 @@
     
       <ul class="navbar-nav flex-row">
         <li class="nav-item me-3 me-lg-1">
-          <a class="nav-link d-sm-flex align-items-sm-center" href="#">
             <img
               src="https://mdbootstrap.com/img/new/avatars/1.webp"
               class="rounded-circle"
@@ -63,8 +50,9 @@
               alt=""
               loading="lazy"
             />
-            <strong class="d-none d-sm-block ms-1" (click)="logout()">Logout</strong>
-          </a>
+            <h3>{{ displayName }}</h3>
+            <button class="btn btn-dark d-sm-block ms-1" (click)="logout()">Logout</button>
+       
         </li>
         <li class="nav-item me-3 me-lg-1">
           <a class="nav-link" href="">

@@ -27,13 +27,13 @@ export class AuthService {
   )
   
 }
-signUp(email:string, password:string): Promise<void> {
+signUp(email:string, password:string,fullName:string): Promise<void> {
  return this.fireAuth.createUserWithEmailAndPassword(email, password)
   .then((userCredential) => {
       let users = firebase.auth().currentUser;
      
       users!.updateProfile({
-        displayName: "FabioB"
+        displayName: fullName
       }).then((elm)=> {
        
         
@@ -46,7 +46,7 @@ signUp(email:string, password:string): Promise<void> {
 logout(){
 this.fireAuth.signOut().then(() => {
   localStorage.removeItem('user')
-  this.router.navigate(['/login'])
+  this.router.navigate(['login'])
 },err => {
   alert(err.message)
 })

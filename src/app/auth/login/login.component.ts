@@ -12,12 +12,9 @@ export class LoginComponent {
   constructor(private auth : AuthService, private router: Router){}
 
   ngOnInit(): void {
-    const local = localStorage.getItem('user');
-    if(local){
-      this.router.navigate(['/home']);
-    }
+  
     
-  }
+  } 
 
   login(){
     if(this.email == ''){

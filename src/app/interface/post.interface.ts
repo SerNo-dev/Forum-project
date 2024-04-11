@@ -1,5 +1,5 @@
 export interface Post {
-  userId: number;
+  userId: string;
   id: number;
   title: string;
   completed: boolean;
