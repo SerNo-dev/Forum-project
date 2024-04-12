@@ -23,6 +23,7 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {
     this.postSrv.getPost().subscribe((data:Post[]) => {
+      
       this.data = data;           
     })
   }
