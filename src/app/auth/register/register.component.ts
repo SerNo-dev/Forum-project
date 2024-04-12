@@ -11,6 +11,7 @@ export class RegisterComponent {
   password: string = '';
   nome: string = '';
   cognome: string = '';
+  file: string = '';
 
   constructor(private auth : AuthService,private router : Router){}
 
@@ -28,10 +29,10 @@ export class RegisterComponent {
       return;
     }
     const fullName = this.nome + ' ' + this.cognome;
-    this.auth.signUp(this.email, this.password,fullName).then(
+    this.auth.signUp(this.email, this.password,fullName, this.file).then(
       ()=>{
         console.log('User is Registered in');
-    
+    console.log(this.file);
         this.router.navigate(['/login'])
       }
     );

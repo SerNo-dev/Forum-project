@@ -11,21 +11,48 @@ import { Router } from '@angular/router';
 })
 export class HomeComponent implements OnInit {
 
+  uid!: string;
+  activeFormGet: boolean = false;
+  category: string = '';
   postContent!: string;
-
-  posts: Post[] = [];
-  user: User[] = [];
-   local = localStorage.getItem('user')
-  constructor(private postSrv: PostService, private router: Router) {}
+  postTitle!: string;
+  post!: Post;
+  data: Post[]= [];
+  local = localStorage.getItem('user')
+  constructor(private postSrv: PostService, private router: Router) { }
 
   ngOnInit(): void {
-    this.postSrv.getPost().subscribe((data)=>{
-      console.log(data);
+    this.postSrv.getPost().subscribe((data:Post[]) => {
       
-      })
+      this.data = data;           
+    })
   }
-  creatPost() {
-    this.postSrv.post(this.postContent);
+  createPost() {
+    this.post = {
+      category: this.category,
+      title: this.postTitle,
+      description: this.postContent,
+      uId: this.postSrv.loaclGet(),
+      displayName: 'qua ci va displayname'
+    };
+     this.postSrv.addPost(this.post);
+  };
+
+  setCategory(categoryName: string) {
+    if(categoryName!==''){
+      this.activeFormGet=true;
+    this.category = categoryName;
+    }
+    else{
+      this.category = 'all';
+    this.activeFormGet=false;
   }
- 
+  }
+  onDeletePost(idPost: string): void {
+    this.postSrv.deletePost(idPost).then(() => {
+      console.log('Post eliminato con successo');
+    }).catch((error) => {
+      console.error('Errore durante l\'eliminazione del post:', error);
+    });
+  }
 }

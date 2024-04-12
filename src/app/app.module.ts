@@ -21,6 +21,9 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { SinglePostComponent } from './components/single-post/single-post.component';
 import { CreatePostComponent } from './components/create-post/create-post.component';
 import { MdbFormsModule } from 'mdb-angular-ui-kit/forms';
+import { MdbDropdownModule } from 'mdb-angular-ui-kit/dropdown';
+import { MdbRippleModule } from 'mdb-angular-ui-kit/ripple';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 @NgModule({
   declarations: [
     AppComponent,
@@ -33,13 +36,16 @@ import { MdbFormsModule } from 'mdb-angular-ui-kit/forms';
   ],
   imports: [
     BrowserModule,
+    MdbDropdownModule,
+    MdbRippleModule,
     MdbFormsModule,
     AppRoutingModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireDatabaseModule,
     FormsModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    BrowserAnimationsModule,
   ],
   providers: [
   ],
