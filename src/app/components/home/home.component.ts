@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { PostService } from '../../models/post.service';
-import { Post } from '../../interface/post.interface';
+import { Post, PostGet } from '../../interface/post.interface';
 import { User } from '../../interface/user.interface';
 import { Router } from '@angular/router';
 
@@ -17,24 +17,28 @@ export class HomeComponent implements OnInit {
   postContent!: string;
   postTitle!: string;
   post!: Post;
-  data: Post[]= [];
-  local = localStorage.getItem('user')
+  data: PostGet[]= [];
+  local = this.postSrv.loaclGet()?.uId;
   constructor(private postSrv: PostService, private router: Router) { }
 
   ngOnInit(): void {
     this.postSrv.getPost().subscribe((data:Post[]) => {
+      console.log(data);
       
-      this.data = data;           
+      
+      this.data = data as PostGet[];  
+      console.log(this.data)         
     })
   }
   createPost() {
+    let idUt=this.postSrv.loaclGet();
     this.post = {
       category: this.category,
       title: this.postTitle,
       description: this.postContent,
-      uId: this.postSrv.loaclGet(),
-      displayName: 'qua ci va displayname'
-    };
+      uId: idUt?.uId,
+      displayName: idUt?.nomeUtente,
+    }; 
      this.postSrv.addPost(this.post);
   };
 
@@ -54,5 +58,8 @@ export class HomeComponent implements OnInit {
     }).catch((error) => {
       console.error('Errore durante l\'eliminazione del post:', error);
     });
+  }
+  onEditPost(i:number){
+    console.log(i);
   }
 }

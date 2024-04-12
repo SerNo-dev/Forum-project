@@ -26,11 +26,14 @@ export class LoginComponent {
       return;
     }
     this.auth.login(this.email, this.password).then(
-      ()=>{
+      (e)=>{
+        console.log(e)
         console.log('User is logged in');
-      
-    
         this.router.navigate(['/home'])
+      },
+      (err)=>{
+        console.log(err)
+        alert('Login failed')
       }
     );
     this.email = ''

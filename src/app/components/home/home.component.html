@@ -5,37 +5,32 @@
       </div>
     </div>
   </div> -->
-
+  <app-navbar *ngIf="local" ></app-navbar>
 <div class="container mt-2">
   <div class="row justify-content-center">
 
-  <!--   <button (click)='setCategory()'>All</button>
+    <!--   <button (click)='setCategory()'>All</button>
     <button (click)='setCategory(Cars)'>Cars</button> -->
-    
-  
-       <!--  <button class="dropdown-item" (click)='setCategory("")'>All</button>
+
+
+    <!--  <button class="dropdown-item" (click)='setCategory("")'>All</button>
         <button class="dropdown-item" (click)='setCategory("cars")'>cars</button>
         <button class="dropdown-item" (click)='setCategory("gaming")'>Gaming</button -->
-        <div mdbDropdown class="btn-group">
-          <button
-            type="button"
-            class="btn btn-dark dropdown-toggle"
-            mdbDropdownToggle
-            aria-expanded="false"
-          >
-            Action
-          </button>
-          <ul mdbDropdownMenu class="dropdown-menu">
-            <li><a class="dropdown-item" (click)='setCategory("")'>visualizza tutti</a></li>
-            <li><a class="dropdown-item" (click)='setCategory("all")'>All</a></li>
-            <li><a class="dropdown-item" (click)='setCategory("cars")'>Cars</a></li>
-            <li><a class="dropdown-item" (click)='setCategory("gaming")'>Gaming</a></li>
-            <li>
-              <hr class="dropdown-divider" />
-            </li>
-            <li><a class="dropdown-item" href="#">Separated link</a></li>
-          </ul>
-        </div>
+    <div mdbDropdown class="btn-group p-0">
+      <button type="button" class="btn btn-dark dropdown-toggle m-0" mdbDropdownToggle aria-expanded="false">
+        Action
+      </button>
+      <ul mdbDropdownMenu class="dropdown-menu">
+        <li><a class="dropdown-item" (click)='setCategory("")'>visualizza tutti</a></li>
+        <li><a class="dropdown-item" (click)='setCategory("all")'>All</a></li>
+        <li><a class="dropdown-item" (click)='setCategory("cars")'>Cars</a></li>
+        <li><a class="dropdown-item" (click)='setCategory("gaming")'>Gaming</a></li>
+        <li>
+          <hr class="dropdown-divider" />
+        </li>
+        <li><a class="dropdown-item" href="#">Separated link</a></li>
+      </ul>
+    </div>
 
   </div>
   <mdb-form-control class="m-2">
@@ -47,20 +42,24 @@
   </mdb-form-control>
 </div>
 
-  <div class="container">
-    <div class="row">
-      <div class="col-12"> 
-        <div *ngFor="let key of data">
-          <div *ngIf="key.category===category&&activeFormGet">
-              {{key.title}}
-              <div >
-
-              </div>
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+      <div *ngFor="let key of data;let i = index">
+        <div *ngIf="key.category===category&&activeFormGet">
+          {{key.title}}
+          <div *ngIf="key.uId==local">
+            <button (click)="onDeletePost(key.postId)">Delete</button>
           </div>
-          <div *ngIf="!activeFormGet">
-              {{key.title}}
+        </div>
+        <div *ngIf="!activeFormGet">
+          {{key.title}}
+          <div *ngIf="key.uId==local">
+            <button (click)="onDeletePost(key.postId)">Delete</button>
+            <!-- <button (click)="onEditPost(i)">edit</button> -->
           </div>
         </div>
       </div>
     </div>
   </div>
+</div>
