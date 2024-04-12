@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { Router } from '@angular/router';
 import firebase from 'firebase/compat/app';
+
 @Injectable({
   providedIn: 'root'
 })
@@ -15,6 +16,7 @@ export class AuthService {
       const token = {
         displayName: firebase.auth().currentUser?.displayName,
         uid:firebase.auth().currentUser?.uid,
+        fotoUrl: firebase.auth().currentUser?.photoURL,
       };
       const tokenString = JSON.stringify(token)
       
@@ -28,13 +30,16 @@ export class AuthService {
   )
   
 }
-signUp(email:string, password:string,fullName:string): Promise<void> {
+
+signUp(email:string, password:string,fullName:string, foto:string): Promise<void> {
  return this.fireAuth.createUserWithEmailAndPassword(email, password)
   .then((userCredential) => {
       let users = firebase.auth().currentUser;
      
       users!.updateProfile({
-        displayName: fullName
+        displayName: fullName,
+        photoURL: foto
+        
       }).then((elm)=> {
        
         

@@ -1,4 +1,3 @@
-<app-navbar></app-navbar>
 <!-- <div class="container">
     <div *ngFor="let post of posts; let i = index">
       <div *ngIf="user[i]">
@@ -6,8 +5,62 @@
       </div>
     </div>
   </div> -->
+
+<div class="container mt-2">
+  <div class="row justify-content-center">
+
+  <!--   <button (click)='setCategory()'>All</button>
+    <button (click)='setCategory(Cars)'>Cars</button> -->
+    
   
-  <mdb-form-control>
-    <textarea [(ngModel)]="postContent" mdbInput class="form-control" id="textAreaExample" rows="4" ></textarea>
-    <button class="btn btn-dark" type="button" (click)="creatPost()">Crea post</button>
+       <!--  <button class="dropdown-item" (click)='setCategory("")'>All</button>
+        <button class="dropdown-item" (click)='setCategory("cars")'>cars</button>
+        <button class="dropdown-item" (click)='setCategory("gaming")'>Gaming</button -->
+        <div mdbDropdown class="btn-group">
+          <button
+            type="button"
+            class="btn btn-dark dropdown-toggle"
+            mdbDropdownToggle
+            aria-expanded="false"
+          >
+            Action
+          </button>
+          <ul mdbDropdownMenu class="dropdown-menu">
+            <li><a class="dropdown-item" (click)='setCategory("")'>visualizza tutti</a></li>
+            <li><a class="dropdown-item" (click)='setCategory("all")'>All</a></li>
+            <li><a class="dropdown-item" (click)='setCategory("cars")'>Cars</a></li>
+            <li><a class="dropdown-item" (click)='setCategory("gaming")'>Gaming</a></li>
+            <li>
+              <hr class="dropdown-divider" />
+            </li>
+            <li><a class="dropdown-item" href="#">Separated link</a></li>
+          </ul>
+        </div>
+
+  </div>
+  <mdb-form-control class="m-2">
+    <label for="titlePost">Dai un titolo al tuo Post</label>
+    <input type="text" [(ngModel)]="postTitle" name="titlePost" class="form-control">
+    <label for="descriptionPost">Scrivi qui il tuo Post!</label>
+    <textarea [(ngModel)]="postContent" mdbInput class="form-control" id="descriptionPost" rows="4"></textarea>
+    <button class="btn btn-dark" type="button" (click)="createPost()">Crea post</button>
   </mdb-form-control>
+</div>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-12"> 
+        <div *ngFor="let key of data">
+          <div *ngIf="key.category===category&&activeFormGet">
+              {{key.title}}
+              <div >
+
+              </div>
+          </div>
+          <div *ngIf="!activeFormGet">
+              {{key.title}}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
